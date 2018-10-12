@@ -21,4 +21,8 @@ class EventsController < ApplicationController
     @event.save
     redirect_to events_path
   end
+
+  def show
+
+  end
 end

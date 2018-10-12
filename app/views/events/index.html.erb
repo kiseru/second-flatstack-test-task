@@ -19,8 +19,8 @@
 
 <div class="align-items-center p-3 my-3 text-black bg-white rounded shadow-box">
   <% @events.each do |event| %>
-    <div class="wrapper p-3 my-2 border border-dark rounded w-100" v-for="eventItem in events" :key="eventItem.id">
-      <a href="`/events/${eventItem.id}`" class="text-dark">
+    <div class="wrapper p-3 my-2 border border-dark rounded w-100">
+      <a href="<%= event_path(event) %>" class="text-dark">
         <h4 class="border-bottom border-dark p-0 m-0"><%= event.name %></h4>
         <div class="d-flex flex-row-reverse">
           <p class="mb-0 font-weight-light font-italic">Автор: <%= event.user.full_name %></p>
