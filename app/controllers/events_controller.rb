@@ -1,6 +1,14 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    if params[:my] == 'true'
+      if user_signed_in?
+        @events = current_user.events
+      else
+        redirect_to new_user_session_path
+      end
+    else
+      @events = Event.all
+    end
   end
 
   def new
@@ -12,9 +20,5 @@ class EventsController < ApplicationController
     @event.user = current_user
     @event.save
     redirect_to events_path
-  end
-
-  def my_events
-    @events = current_user.events
   end
 end
