@@ -4,19 +4,11 @@
 
     <div class="btn-group btn-group-toggle">
       <% if params[:my] == 'true' %>
-        <a href="/events" class="btn btn-secondary">
-          <span class="text-white">Все</span>
-        </a>
-        <a href="/events?my=true" class="btn btn-secondary active">
-          <span class="text-white">Мои</span>
-        </a>
+        <%= link_to 'Все', events_path, class: %w(btn btn-secondary) %>
+        <%= link_to 'Мои', events_path(my: 'true'), class: %w(btn btn-secondary active)%>
       <% else %>
-        <a href="/events" class="btn btn-secondary active">
-          <span class="text-white">Все</span>
-        </a>
-        <a href="/events?my=true" class="btn btn-secondary">
-          <span class="text-white">Мои</span>
-        </a>
+        <%= link_to 'Все', events_path, class: %w(btn btn-secondary active) %>
+        <%= link_to 'Мои', events_path(my: 'true'), class: %w(btn btn-secondary)%>
       <% end %>
     </div>
   </div>
