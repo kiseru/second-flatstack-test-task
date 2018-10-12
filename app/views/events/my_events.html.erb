@@ -1,0 +1,13 @@
+<h1>Events List</h1>
+
+<%= link_to "Create event", events_new_path %>
+
+<ul>
+  <% @events.each do |event| %>
+    <li>
+      Name: <%= event.name %><br />
+      Date: <%= event.date.to_formatted_s(:long) %><br />
+      Author: <%= event.user %>
+    </li>
+  <% end %>
+</ul>
