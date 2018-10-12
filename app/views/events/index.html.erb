@@ -1,13 +1,42 @@
-<h1>Events List</h1>
+<div class="d-flex align-items-center justify-content-between p-3 px-4 my-3 text-white bg-dark rounded shadow-box">
+  <div class="d-flex flex-row">
+    <h4 class="pt-1 mb-0 pb-0 mr-2 text-white lh-100">События</h4>
 
-<%= link_to "Create event", events_new_path %>
+    <div class="btn-group btn-group-toggle">
+      <% if params[:my] == 'true' %>
+        <a href="/events" class="btn btn-secondary">
+          <span class="text-white">Все</span>
+        </a>
+        <a href="/events?my=true" class="btn btn-secondary active">
+          <span class="text-white">Мои</span>
+        </a>
+      <% else %>
+        <a href="/events" class="btn btn-secondary active">
+          <span class="text-white">Все</span>
+        </a>
+        <a href="/events?my=true" class="btn btn-secondary">
+          <span class="text-white">Мои</span>
+        </a>
+      <% end %>
+    </div>
+  </div>
+  <div>
+    <%= link_to "Добавить событие", events_new_path, class: %w(btn btn-light btn-sm) %>
+  </div>
+</div>
 
-<ul>
+<div class="align-items-center p-3 my-3 text-black bg-white rounded shadow-box">
   <% @events.each do |event| %>
-    <li>
-      Name: <%= event.name %><br />
-      Date: <%= event.date.to_formatted_s(:long) %><br />
-      Author: <%= event.user %>
-    </li>
+    <div class="wrapper p-3 my-2 border border-dark rounded w-100" v-for="eventItem in events" :key="eventItem.id">
+      <a href="`/events/${eventItem.id}`" class="text-dark">
+        <h4 class="border-bottom border-dark p-0 m-0"><%= event.name %></h4>
+        <div class="d-flex flex-row-reverse">
+          <p class="mb-0 font-weight-light font-italic">Автор: <%= event.user.full_name %></p>
+        </div>
+        <div class="d-flex flex-row-reverse">
+          <p class="mb-0 font-weight-light font-italic">Дата: <%= I18n.localize event.date, format: :long %></p>
+        </div>
+      </a>
+    </div>
   <% end %>
-</ul>
+</div>

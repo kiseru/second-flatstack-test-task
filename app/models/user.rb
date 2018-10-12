@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :events
 
-  def to_s
-    "#{@first_name} #{@last_name}"
+  def full_name
+    "#{first_name} #{last_name}"
   end
 end
