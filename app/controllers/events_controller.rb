@@ -18,7 +18,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(params.require(:event).permit(:name, :date))
+    @event = Event.new(event_params)
     @event.user = current_user
     @event.save
     redirect_to events_path
@@ -30,7 +30,7 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    @event.update(params.require(:event).permit(:name, :date))
+    @event.update(event_params)
     redirect_to @event
   end
 
@@ -45,6 +45,10 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def event_params
+    params.require(:event).permit(:name, :date)
+  end
 
   def require_login
     return redirect_to new_user_session unless user_signed_in?
