@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   post 'events', to: 'events#create'
   get 'events/new', to: 'events#new'
   get 'events/:id', to: 'events#show', as: 'event'
+
+  root :to => redirect('/events')
 end
