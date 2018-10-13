@@ -1,17 +1,23 @@
-<h1>Create new event</h1>
+<div class="w-400 mx-auto">
+  <div class="bg-white rounded shadow">
+    <div class="p-3 text-center">
+      <h1 class="h3 mb-3 font-weight-normal">Добавить событие</h1>
 
-<%= form_for @event, url: {action: "create"} do |f| %>
-  <div>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
+      <%= form_for @event, url: {action: "create"} do |f| %>
+        <div class="form-group">
+          <%= f.label :name, 'Название' %><br/>
+          <%= f.text_field :name, class: %w(form-control) %>
+        </div>
 
-  <div>
-    <%= f.label :date %><br />
-    <%= f.datetime_select :date %>
-  </div>
+        <div>
+          <%= f.label :date, 'Дата' %>
+          <%= f.datetime_field :date, class: 'form-control' %>
+        </div>
 
-  <div>
-    <%= f.submit "Create event" %>
+        <div class="pt-3">
+          <%= f.submit "Добавить событие", class: %w(btn btn-primary btn-block) %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
