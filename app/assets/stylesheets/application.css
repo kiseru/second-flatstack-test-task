@@ -1,4 +1,6 @@
-.form-sign-in {
+.form-sign-in,
+.form-sign-up,
+.form-forgot-password {
     width: 400px;
 }
 
@@ -12,8 +14,4 @@
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-}
-
-.form-sign-up {
-    width: 400px;
 }
