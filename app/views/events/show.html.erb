@@ -9,10 +9,12 @@
     </div>
   </div>
 
-  <div class="d-flex flex-row-reverse bg-dark rounded shadow">
-    <div class="p-2">
-      <%= link_to 'Изменить', edit_event_path, class: %w(btn btn-warning text-white) %>
-      <%= link_to 'Удалить', event_path(@event), method: :delete, class: %w(btn btn-danger text-white) %>
+  <% if user_signed_in? and current_user == @event.user %>
+    <div class="d-flex flex-row-reverse bg-dark rounded shadow">
+      <div class="p-2">
+        <%= link_to 'Изменить', edit_event_path, class: %w(btn btn-warning text-white) %>
+        <%= link_to 'Удалить', event_path(@event), method: :delete, class: %w(btn btn-danger text-white) %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
