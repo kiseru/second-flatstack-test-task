@@ -3,10 +3,7 @@ Rails.application.routes.draw do
 
   get 'profile', to: 'profile#index'
 
-  get 'events', to: 'events#index'
-  post 'events', to: 'events#create'
-  get 'events/new', to: 'events#new'
-  get 'events/:id', to: 'events#show', as: 'event'
+  resources :events
 
   root :to => redirect('/events')
 end

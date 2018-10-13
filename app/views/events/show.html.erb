@@ -1,9 +1,17 @@
 <div class="mx-auto">
-  <div class="bg-white rounded shadow">
-    <div class="p-3">
-      <h1 class="h3 mb-3 font-weight-normal"><%= @event.name %></h1>
-      <p class="text-muted mb-0">Дата: <%= I18n.localize @event.date, format: :long %></p>
-      <p class="text-muted mb-0">Автор: <%= @event.user.full_name %></p>
+  <div class="pb-3">
+    <div class="bg-white rounded shadow">
+      <div class="p-3">
+        <h1 class="h3 mb-3 font-weight-normal"><%= @event.name %></h1>
+        <p class="text-muted mb-0">Дата: <%= I18n.localize @event.date, format: :long %></p>
+        <p class="text-muted mb-0">Автор: <%= @event.user.full_name %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex flex-row-reverse bg-dark rounded shadow">
+    <div class="p-2">
+      <%= link_to 'Изменить', edit_event_path, class: %w(btn btn-warning text-white) %>
     </div>
   </div>
 </div>

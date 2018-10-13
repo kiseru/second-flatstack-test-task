@@ -23,4 +23,14 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
   end
+
+  def update
+    @event = Event.find(params[:id])
+    @event.update(params.require(:event).permit(:name, :date))
+    redirect_to @event
+  end
+
+  def edit
+    @event = Event.find(params[:id])
+  end
 end
