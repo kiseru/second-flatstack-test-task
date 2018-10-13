@@ -1,11 +1,8 @@
 class EventsController < ApplicationController
   def index
     if params[:my] == 'true'
-      if user_signed_in?
-        @events = current_user.events
-      else
-        redirect_to new_user_session_path
-      end
+      return redirect_to new_user_session_path unless user_signed_in?
+      @events = current_user.events
     else
       @events = Event.all
     end
