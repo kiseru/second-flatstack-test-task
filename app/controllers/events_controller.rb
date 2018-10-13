@@ -18,9 +18,10 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
-    @event.user = current_user
-    @event.save
+    return redirect_to new_user_session_path unless user_signed_in?
+
+    @user = current_user
+    @event = @user.events.create(event_params)
     redirect_to events_path
   end
 
