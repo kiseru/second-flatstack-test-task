@@ -3,7 +3,7 @@ class ProfileController < ApplicationController
     if user_signed_in?
       @current_user = current_user
     else
-      redirect_to new_user_session
+      redirect_to new_user_session_path
     end
   end
 end
