@@ -5,10 +5,10 @@
     <div class="btn-group btn-group-toggle">
       <% if params[:my] == 'true' %>
         <%= link_to 'Все', events_path, class: %w(btn btn-secondary) %>
-        <%= link_to 'Мои', events_path(my: 'true'), class: %w(btn btn-secondary active)%>
+        <%= link_to 'Мои', events_path(my: 'true'), class: %w(btn btn-secondary active) %>
       <% else %>
         <%= link_to 'Все', events_path, class: %w(btn btn-secondary active) %>
-        <%= link_to 'Мои', events_path(my: 'true'), class: %w(btn btn-secondary)%>
+        <%= link_to 'Мои', events_path(my: 'true'), class: %w(btn btn-secondary) %>
       <% end %>
     </div>
   </div>
