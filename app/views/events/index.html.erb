@@ -1,7 +1,10 @@
-<div class="d-flex align-items-center justify-content-between p-3 px-4 my-3 text-white bg-dark rounded shadow-box">
-  <div class="d-flex flex-row">
-    <h4 class="pt-1 mb-0 pb-0 mr-2 text-white lh-100">События</h4>
+<div class="mx-auto text-center p-2">
+  <h2>События</h2>
+</div>
 
+<div class="d-flex align-items-center justify-content-between p-3 px-4 my-3 text-white bg-dark rounded shadow-box">
+
+  <div class="d-flex flex-row">
     <div class="btn-group btn-group-toggle">
       <% if params[:my] == 'true' %>
         <%= link_to 'Все', events_path, class: %w(btn btn-secondary) %>
@@ -13,20 +16,22 @@
     </div>
   </div>
   <div>
-    <%= link_to "Добавить событие", new_event_path, class: %w(btn btn-light btn-sm) %>
+    <%= link_to "Добавить событие", new_event_path, class: %w(btn btn-outline-light) %>
   </div>
 </div>
 
-<div class="align-items-center p-3 my-3 text-black bg-white rounded shadow-box">
+<div class="p-2 mb-3">
   <% @events.each do |event| %>
-    <div class="wrapper p-3 my-2 border border-dark rounded w-100">
-      <a href="<%= event_path(event) %>" class="text-dark">
-        <h4 class="border-bottom border-dark p-0 m-0"><%= event.name %></h4>
-        <div class="d-flex flex-row-reverse">
-          <p class="mb-0 font-weight-light font-italic">Автор: <%= event.user.full_name %></p>
-        </div>
-        <div class="d-flex flex-row-reverse">
-          <p class="mb-0 font-weight-light font-italic">Дата: <%= I18n.localize event.date, format: :long %></p>
+    <div class="p-1">
+      <a class="text-dark" style="text-decoration: none" href="/events/<%= event.id %>">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= event.name %></h5>
+            <div class="card-subtitle">
+              <small class="text-muted">Дата: <%= I18n.localize event.date, format: :long %></small>
+              <small class="text-muted">Автор: <%= event.user.full_name %></small>
+            </div>
+          </div>
         </div>
       </a>
     </div>
