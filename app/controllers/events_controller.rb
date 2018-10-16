@@ -20,8 +20,9 @@ class EventsController < ApplicationController
   def create
     return redirect_to new_user_session_path unless user_signed_in?
 
-    @user = current_user
-    @event = @user.events.create(event_params)
+    @event = Event.new(event_params)
+    recurrence = params[:recurrence]
+    @event.add_recurrence_and_save(current_user, recurrence)
     redirect_to events_path
   end
 
@@ -32,6 +33,8 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     @event.update(event_params)
+    recurrence = params[:recurrence]
+    @event.add_recurrence_and_save(current_user, recurrence)
     redirect_to @event
   end
 
