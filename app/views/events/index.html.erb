@@ -1,32 +1,33 @@
 <div class="mx-auto text-center p-2">
-  <h2>События</h2>
+  <h1>События</h1>
 </div>
 
 <div class="d-flex align-items-center justify-content-between p-3 px-4 my-3 text-white bg-dark rounded shadow-box">
 
+  <div>
+    <%= link_to "Добавить событие", new_event_path, class: %w(btn btn-outline-light) %>
+  </div>
+
   <div class="d-flex flex-row">
+    <div class="d-flex pr-4 align-items-center">
+      <%= link_to '<', events_path(d: (@current_date - 7.day).mday, m: (@current_date - 7.day).mon, y: (@current_date - 7.day).year), class: %w(btn btn-outline-light btn-sm p-2) %>
+      <h6 class="mb-0 px-3 py-2">
+        <%= @current_date.strftime "%d.%m.%Y" %> - <%= (@current_date + 6.day).strftime "%d.%m.%Y" %>
+      </h6>
+      <%= link_to '>', events_path(d: (@current_date + 7.day).mday, m: (@current_date + 7.day).mon, y: (@current_date + 7.day).year), class: %w(btn btn-outline-light btn-sm p-2) %>
+    </div>
+
     <div class="btn-group btn-group-toggle">
       <% if params[:my] == 'true' %>
-        <%= link_to 'Все', events_path, class: %w(btn btn-secondary) %>
-        <%= link_to 'Мои', events_path(my: 'true'), class: %w(btn btn-secondary active) %>
+        <%= link_to 'Все', events_path, class: %w(btn btn-outline-light) %>
+        <%= link_to 'Мои', events_path(my: 'true'), class: %w(btn btn-outline-light active) %>
       <% else %>
-        <%= link_to 'Все', events_path, class: %w(btn btn-secondary active) %>
-        <%= link_to 'Мои', events_path(my: 'true'), class: %w(btn btn-secondary) %>
+        <%= link_to 'Все', events_path, class: %w(btn btn-outline-light active) %>
+        <%= link_to 'Мои', events_path(my: 'true'), class: %w(btn btn-outline-light) %>
       <% end %>
     </div>
   </div>
 
-  <div class="d-flex">
-    <%= link_to '<', events_path(d: (@current_date - 7.day).mday, m: (@current_date - 7.day).mon, y: (@current_date - 7.day).year), class: %w(btn btn-outline-light btn-sm) %>
-    <h4 class="mb-0 px-3">
-      <%= @current_date.strftime "%d.%m.%Y" %> - <%= (@current_date + 6.day).strftime "%d.%m.%Y" %>
-    </h4>
-    <%= link_to '>', events_path(d: (@current_date + 7.day).mday, m: (@current_date + 7.day).mon, y: (@current_date + 7.day).year), class: %w(btn btn-outline-light btn-sm) %>
-  </div>
-
-  <div>
-    <%= link_to "Добавить событие", new_event_path, class: %w(btn btn-outline-light) %>
-  </div>
 </div>
 
 <div class="p-2 mb-3">
