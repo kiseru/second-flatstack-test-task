@@ -15,6 +15,15 @@
       <% end %>
     </div>
   </div>
+
+  <div class="d-flex">
+    <%= link_to 'Предыдущая', events_path, class: %w(btn btn-outline-light btn-sm) %>
+    <h4 class="mb-0 px-3">
+      <%= @current_date.strftime "%d.%m.%Y" %> - <%= (@current_date + 6.day).strftime "%d.%m.%Y" %>
+    </h4>
+    <%= link_to 'Следующая', events_path, class: %w(btn btn-outline-light btn-sm) %>
+  </div>
+
   <div>
     <%= link_to "Добавить событие", new_event_path, class: %w(btn btn-outline-light) %>
   </div>
@@ -23,13 +32,13 @@
 <div class="p-2 mb-3">
   <% @events.each do |event| %>
     <div class="p-1">
-      <a class="text-dark" style="text-decoration: none" href="/events/<%= event.id %>">
+      <a class="text-dark" style="text-decoration: none" href="/events/<%= event.event.id %>">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title"><%= event.name %></h5>
+            <h5 class="card-title"><%= event.event.name %></h5>
             <div class="card-subtitle">
               <small class="text-muted">Дата: <%= I18n.localize event.date, format: :long %></small>
-              <small class="text-muted">Автор: <%= event.user.full_name %></small>
+              <small class="text-muted">Автор: <%= event.event.user.full_name %></small>
             </div>
           </div>
         </div>

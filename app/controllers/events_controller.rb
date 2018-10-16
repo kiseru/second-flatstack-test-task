@@ -9,6 +9,18 @@ class EventsController < ApplicationController
     else
       @events = Event.all
     end
+
+    if params[:d].nil? && params[:m].nil? && params[:y].nil?
+      @current_date = Date.today.to_time
+      events = @events.map { |event| [event, event.schedule.occurrences_between(Time.now, (Date.today + 6.day).to_time)] }.to_h
+                      .select { |_, v| v.any? }
+      @events = []
+      events.each do |k, v|
+        v.each do |i|
+          @events.push(EventInstance.new(k, i))
+        end
+      end
+    end
   end
 
   def new
