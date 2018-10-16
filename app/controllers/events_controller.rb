@@ -10,17 +10,32 @@ class EventsController < ApplicationController
       @events = Event.all
     end
 
-    if params[:d].nil? && params[:m].nil? && params[:y].nil?
-      @current_date = Date.today.to_time
-      events = @events.map { |event| [event, event.schedule.occurrences_between(Time.now, (Date.today + 6.day).to_time)] }.to_h
-                      .select { |_, v| v.any? }
-      @events = []
-      events.each do |k, v|
-        v.each do |i|
-          @events.push(EventInstance.new(k, i))
-        end
+    if !params[:d].nil? && !params[:m].nil? && !params[:y].nil?
+      begin
+        @current_date = Date.new(params[:y].to_i, params[:m].to_i, params[:d].to_i)
+      rescue StandardError
+        return redirect_to events_path
       end
     end
+
+    if !params[:d].nil? || !params[:m].nil? || !params[:y].nil?
+      return redirect_to events_path
+    end
+
+    if params[:d].nil? && params[:m].nil? && params[:y].nil?
+      @current_date = Date.today.to_time
+    end
+
+    events = @events.map { |event| [event, event.schedule.occurrences_between(@current_date.to_time, (@current_date + 6.day).to_time)] }.to_h
+                    .select { |_, v| v.any? }
+    @events = []
+    events.each do |k, v|
+      v.each do |i|
+        @events.push(EventInstance.new(k, i))
+      end
+    end
+
+    @events.sort! { |a, b| a.date <=> b.date }
   end
 
   def new

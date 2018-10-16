@@ -17,11 +17,11 @@
   </div>
 
   <div class="d-flex">
-    <%= link_to 'Предыдущая', events_path, class: %w(btn btn-outline-light btn-sm) %>
+    <%= link_to 'Предыдущая', events_path(d: (@current_date - 7.day).mday, m: (@current_date - 7.day).mon, y: (@current_date - 7.day).year), class: %w(btn btn-outline-light btn-sm) %>
     <h4 class="mb-0 px-3">
       <%= @current_date.strftime "%d.%m.%Y" %> - <%= (@current_date + 6.day).strftime "%d.%m.%Y" %>
     </h4>
-    <%= link_to 'Следующая', events_path, class: %w(btn btn-outline-light btn-sm) %>
+    <%= link_to 'Следующая', events_path(d: (@current_date + 7.day).mday, m: (@current_date + 7.day).mon, y: (@current_date + 7.day).year), class: %w(btn btn-outline-light btn-sm) %>
   </div>
 
   <div>
