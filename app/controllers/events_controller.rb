@@ -16,9 +16,7 @@ class EventsController < ApplicationController
       rescue StandardError
         return redirect_to events_path
       end
-    end
-
-    if !params[:d].nil? || !params[:m].nil? || !params[:y].nil?
+    elsif !params[:d].nil? || !params[:m].nil? || !params[:y].nil?
       return redirect_to events_path
     end
 
