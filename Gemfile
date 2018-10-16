@@ -65,3 +65,4 @@ gem 'devise', '~> 4.5'
 
 gem 'i18n', '~> 1.1'
 gem 'rails-i18n', '~> 5.1', '>= 5.1.1'
+gem 'ice_cube', '~> 0.16.3'
