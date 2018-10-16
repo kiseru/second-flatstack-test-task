@@ -14,16 +14,6 @@ class Event < ApplicationRecord
     else
       self.recurrence = IceCube::Schedule.from_yaml(schedule_rule)
     end
-
-    # if recurrence.nil? && !schedule_rule.nil?
-    #   self.recurrence = IceCube::Schedule.from_yaml(self.schedule_rule)
-    # elsif recurrence.nil?
-    #   self.recurrence = IceCube::Schedule.new(start = date)
-    # elsif !self.schedule_rule.nil?
-    #   self.recurrence = IceCube::Schedule.from_yaml(self.schedule_rule)
-    # end
-    #
-    # recurrence
   end
 
   def add_daily_recurrence_rule
